@@ -10,6 +10,12 @@ Example:
 
 ```bash
 
-docker run --name -p 8000:8000 jmtvms/dynamodb-ci aws dynamodb create-table --table-name myTable --attribute-definitions AttributeName=id,AttributeType=S --key-schema AttributeName=id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --endpoint-url http://0.0.0.0:8000
+docker run --name -p 8000:8000 jmtvms/dynamodb-ci \
+    aws dynamodb create-table \
+    --table-name myTable \
+    --attribute-definitions AttributeName=id,AttributeType=S \
+    --key-schema AttributeName=id,KeyType=HASH \
+    --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
+    --endpoint-url http://0.0.0.0:8000
 
 ```
