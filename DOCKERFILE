@@ -1,5 +1,8 @@
 FROM openjdk:7-jre-alpine
 
+LABEL maintainer="joao@miguel.ms"
+LABEL description="DynamoDB Container to be used with CI environments"
+
 ENV AWS_ACCESS_KEY_ID="your-aws-access-key-id"
 ENV AWS_SECRET_ACCESS_KEY="your-aws-secret-access-key"
 ENV AWS_DEFAULT_REGION="us-west-2"
