@@ -1,4 +1,21 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:7-jre-alpine
 
-RUN package update
-RUN package add py-pip
+ENV AWS_ACCESS_KEY_ID="<aws-access-key-id>"
+ENV AWS_SECRET_ACCESS_KEY="<aws-secret-access-key>"
+ENV AWS_DEFAULT_REGION="us-west-2"
+ENV DOWNLOAD_URL="https://s3-$AWS_DEFAULT_REGION.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz"
+
+# Installing DynamoDB
+RUN wget $DOWNLOAD_URL
+WORKDIR /opt/dynamodb-local/
+RUN tar zxvf /dynamodb_local_latest.tar.gz -C /opt/dynamodb-local/
+RUN rm /dynamodb_local_latest.tar.gz
+
+# Installing AWS Cli
+RUN apk update
+RUN apk add py-pip
+RUN pip install awscli --upgrade
+
+ENTRYPOINT java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
+
+EXPOSE 8000
