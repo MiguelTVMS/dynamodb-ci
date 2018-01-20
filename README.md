@@ -4,6 +4,8 @@ DynamoDB Container to be used with CI environments.
 
 The main idea of this container is to facilitate the utilization of DynamoDB Local in CI projects by offering one single container with DynamoDB and aws cli in it.
 
+_This container is based in my other container [jmtvms/dynamo-local](https://hub.docker.com/r/jmtvms/dynamodb-local/) wich is designed for development._
+
 In this container I didn't use the `CMD` on the docker file so you can for example start it with a command of your own for creating a table of unit tests just like the example below.
 
 ```bash
@@ -25,8 +27,8 @@ If you want to use this containers aws cli to control other aws resources then f
 
 ### **JAVA_OPTS**
 
-You can set options to the jvm running the DynamoDB adding them here. Be sure to know what you are doing or the DynamoDB may even not start.
+You can set options to the jvm running the DynamoDB adding them here. Be sure to know what you are doing or the DynamoDB may even not start. _This environment variable is inherited from the jmtvms/dynamo-local container._
 
 ### **PORT**
 
-You can change the port wich DynamoDB service is running inside the container. I doubt anyone wants to mess with that since you can map the port on the host running the container but I'm really adept of flexibility...
+You can change the port wich DynamoDB service is running inside the container. I doubt anyone wants to mess with that since you can map the port on the host running the container but I'm really adept of flexibility... _This environment variable is inherited from the jmtvms/dynamo-local container._
